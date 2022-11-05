@@ -4,6 +4,10 @@
     <%= post.title %>
   </p>
 
+  <% if action_name == 'show' %>
+    <h4>Posted by: <%= post.user.email %></h4>
+  <% end %>
+
   <p class="my-5">
     <strong class="block font-medium mb-1">Content:</strong>
     <%= post.content %>
