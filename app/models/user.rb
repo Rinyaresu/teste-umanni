@@ -12,6 +12,9 @@ class User < ApplicationRecord
   end
 
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
+<<<<<<< HEAD
 
   has_many :posts
+=======
+>>>>>>> 6017c66 (feat: users)
 end
