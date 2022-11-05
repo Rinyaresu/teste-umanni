@@ -9,14 +9,17 @@
 #   Character.create(name: "Luke", movie: movies.first)
 #
 
-# Create 10 posts
+# Create a user
+User.create_or_find_by!(email: Faker::Internet.email, password: 'password', password_confirmation: 'password')
 
-# exclude all posts
+# Exclude all posts
 Post.all.each(&:destroy)
 
+# Create 15 posts
 15.times do
-  Post.create(
+  Post.create!(
     title: Faker::Lorem.sentence,
-    content: Faker::Lorem.paragraph_by_chars(number: 256, supplemental: false)
+    content: Faker::Lorem.paragraph_by_chars(number: 256, supplemental: false),
+    user_id: User.first.id
   )
 end

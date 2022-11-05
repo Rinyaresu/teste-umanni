@@ -12,4 +12,6 @@ class User < ApplicationRecord
   end
 
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
+
+  has_many :posts
 end
