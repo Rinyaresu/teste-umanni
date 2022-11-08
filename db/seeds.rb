@@ -9,6 +9,9 @@
 #   Character.create(name: "Luke", movie: movies.first)
 #
 
+# Create a main sample user.
+User.create_or_find_by!(email: 'user@user.com', password: 'password', password_confirmation: 'password')
+
 # Create a user
 User.create_or_find_by!(email: Faker::Internet.email, password: 'password', password_confirmation: 'password')
 
