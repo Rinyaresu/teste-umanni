@@ -14,20 +14,20 @@ This test simulates a "real sprint" that I will receive as an intern at Umanni.
 * Postgresql
 * Redis
 
-## How to build the project
+### How to build the project
 
 ```ruby
 bundle install
 rails db:setup
 ```
 
-## How to run the project
+### How to run the project
 
 ```ruby
 ./bin/dev
 ```
 
-## Tools used
+### Tools used
 
 * [x] Devise
 * [x] Action Text
