@@ -1,0 +1,12 @@
+<div class='flex flex-row justify-between items-end mt-10 pt-4 space-y-2 border-t border-gray-700 dark:border-gray-700'>
+  <span>Posted: <strong><%= time_ago_in_words(comment.updated_at) %></strong></span>
+  <% if current_user == comment.user %>
+    <%= button_to "Delete", [post, comment], method: :delete, data: { confirm: "Are you sure?" }, class: 'ml-24 text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center'%>
+  <% end %>
+</div>
+<div class="comment-<%= comment.id %> flex text-neutral-900 dark:text-white justify-between font-bold">
+  <%= comment.user.email %>
+</div>
+<div class="mb-10">
+  <%= comment.content %>
+</div>

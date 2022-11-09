@@ -1,18 +1,15 @@
-# frozen_string_literal: true
-
 require 'rails_helper'
 
-RSpec.describe Post do
-  subject(:post) { build(:post) }
+RSpec.describe Comment, type: :model do
+  subject(:comment) { build(:comment) }
 
   describe 'validations' do
-    it { is_expected.to validate_presence_of(:title) }
     it { is_expected.to validate_presence_of(:content) }
   end
 
   describe 'associations' do
+    it { is_expected.to belong_to(:post) }
     it { is_expected.to belong_to(:user) }
-    it { is_expected.to have_many(:comments) }
   end
 
   describe 'rich text' do

@@ -10,11 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema[7.0].define(version: 2022_11_05_231431) do
-=======
-ActiveRecord::Schema[7.0].define(version: 2022_11_05_215012) do
->>>>>>> 6017c66 (feat: users)
+ActiveRecord::Schema[7.0].define(version: 2022_11_05_234911) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -56,15 +52,21 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_05_215012) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "comments", force: :cascade do |t|
+    t.bigint "post_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_comments_on_post_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
   create_table "posts", force: :cascade do |t|
     t.string "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-<<<<<<< HEAD
     t.bigint "user_id", null: false
     t.index ["user_id"], name: "index_posts_on_user_id"
-=======
->>>>>>> 6017c66 (feat: users)
   end
 
   create_table "users", force: :cascade do |t|
@@ -82,8 +84,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_05_215012) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-<<<<<<< HEAD
+  add_foreign_key "comments", "posts"
+  add_foreign_key "comments", "users"
   add_foreign_key "posts", "users"
-=======
->>>>>>> 6017c66 (feat: users)
 end
