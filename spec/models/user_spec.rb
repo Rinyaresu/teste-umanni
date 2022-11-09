@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe User, type: :model do
+RSpec.describe User do
   describe 'after_initialize' do
     it 'sets default role to user' do
-      user = User.new
+      user = described_class.new
       expect(user.role).to eq('user')
     end
   end

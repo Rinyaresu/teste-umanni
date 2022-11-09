@@ -35,7 +35,7 @@ class Ability
     can :read, :all
     can :manage, Comment, user_id: user.id
 
-    return unless user.present?
+    return if user.blank?
 
     can %i[create update destroy], Post, user:
   end
