@@ -83,14 +83,14 @@ group :test do
   gem 'webdrivers'
 end
 
+gem 'devise'
 gem 'guard-rspec', require: false
 gem 'rubocop', require: false
 gem 'rubocop-performance', require: false
 gem 'rubocop-rails', require: false
 gem 'rubocop-rspec', require: false
 gem 'tailwindcss-rails', '~> 2.0'
-gem 'devise'
 
-gem "ruby-lsp", "~> 0.3.5", :group => :development
+gem 'ruby-lsp', '~> 0.3.5', group: :development
 
 gem 'cancancan'

@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 require 'cancan/matchers'
 
-RSpec.describe Ability, type: :model do
-  subject(:ability) { Ability.new(user) }
+RSpec.describe Ability do
+  subject(:ability) { described_class.new(user) }
 
   describe 'As a visitor' do
     let(:user) { nil }
@@ -22,4 +24,3 @@ RSpec.describe Ability, type: :model do
     it { is_expected.to be_able_to(:destroy, Comment) }
   end
 end
-
