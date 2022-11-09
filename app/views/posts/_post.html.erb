@@ -1,21 +1,14 @@
-<div id="<%= dom_id post %>">
+<div class="text-gray-900 dark:text-white mb-5" id="<%= dom_id post %>">
+  <div>
+    <p class="text-gray-900/75 dark:text-white/75"><%= post.created_at.strftime("#{post.created_at.day.ordinalize} %B %Y") %></p>
+    <p class="text-gray-900 dark:text-white text-3xl font-extrabold tracking-tight leading-none md:text-4xl lg:text-4xl">
+      <%= post.title %>
+    </p>
+    <% if action_name == 'show' %>
+      <h4>Posted by: <%= post.user.email %></h4>
+    <% end %>
+  </div>
   <p class="my-5">
-    <strong class="block font-medium mb-1">Title:</strong>
-    <%= post.title %>
-  </p>
-
-  <% if action_name == 'show' %>
-    <h4>Posted by: <%= post.user.email %></h4>
-  <% end %>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Content:</strong>
     <%= post.content %>
   </p>
-
-  <% if action_name != "show" %>
-    <%= link_to "Show this post", post, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to 'Edit this post', edit_post_path(post), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
-    <hr class="mt-6">
-  <% end %>
 </div>

@@ -90,3 +90,5 @@ gem 'rubocop-rails', require: false
 gem 'rubocop-rspec', require: false
 gem 'tailwindcss-rails', '~> 2.0'
 gem 'devise'
+
+gem "ruby-lsp", "~> 0.3.5", :group => :development
