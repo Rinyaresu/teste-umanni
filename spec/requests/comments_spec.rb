@@ -40,19 +40,26 @@ RSpec.describe 'Comments' do
         end
       end
     end
+  end
+
+  describe 'As a visitor' do
+    before do
+      @post = create(:post)
+    end
 
     describe 'DELETE /destroy' do
-      it 'deletes a comment' do
-        comment = create(:comment, post: Post.last)
+      it 'can not deletes a comment' do
+        comment = create(:comment, post: @post)
+
         expect do
           delete post_comment_path(Post.last, comment)
-        end.to change(Comment, :count).by(-1)
+        end.not_to change(Comment, :count)
       end
 
       it 'redirects to post' do
         comment = create(:comment, post: Post.last)
         delete post_comment_path(Post.last, comment)
-        expect(response).to redirect_to(post_path(Post.last))
+        expect(response).to redirect_to(new_user_session_path)
       end
     end
   end

@@ -32,7 +32,7 @@ RSpec.describe 'PostsSystem' do
     it 'Can not edit a post' do
       post = create(:post)
       visit edit_post_path(post)
-      expect(page).to have_content('You need to sign in or sign up before continuing.')
+      expect(page).to have_content('You have to log in to continue.')
     end
 
     it 'Can not delete a post' do
@@ -66,7 +66,7 @@ RSpec.describe 'PostsSystem' do
     it 'posts#edit' do
       post = create(:post)
       visit edit_post_path(post)
-      expect(page).to have_content 'Editing post'
+      expect(page).to have_content 'You are not authorized to access this page.'
     end
   end
 
@@ -90,17 +90,22 @@ RSpec.describe 'PostsSystem' do
       expect(page).to have_content post.title
     end
 
-    it '#update' do
-      post = create(:post)
-      visit edit_post_path(post)
+    it '#edit' do
+      visit root_path
+      click_on 'New post'
+      fill_in_post_form('post_content')
+      click_button 'Create Post'
+      click_on 'Edit this post'
       fill_in_post_form('post_content')
       click_button 'Update Post'
       expect(page).to have_content 'Post was successfully updated.'
     end
 
     it '#destroy' do
-      post = create(:post)
-      visit post_path(post)
+      visit root_path
+      click_on 'New post'
+      fill_in_post_form('post_content')
+      click_button 'Create Post'
       click_on 'Destroy'
       expect(page).to have_content 'Post was successfully destroyed.'
     end

@@ -108,10 +108,10 @@ RSpec.describe '/posts' do
     end
 
     describe 'GET /edit' do
-      it 'renders a successful response' do
-        post = Post.create! valid_attributes
+      it 'renders a redirect response unless the post is from user' do
+        post = create(:post)
         get edit_post_url(post)
-        expect(response).to be_successful
+        expect(response).to be_redirect
       end
     end
 
@@ -143,46 +143,48 @@ RSpec.describe '/posts' do
       end
     end
 
-    describe 'PATCH /update' do
-      context 'with valid parameters' do
-        let(:new_attributes) { attributes_for(:post) }
+    describe 'If the user is not the creator' do
+      describe 'cannot PATCH /update' do
+        context 'with valid parameters' do
+          let(:new_attributes) { attributes_for(:post) }
 
-        it 'updates the requested post' do
-          post = Post.create! valid_attributes
-          patch post_url(post), params: { post: new_attributes }
-          post.reload
-          expect(post.title).to eq(new_attributes[:title])
+          it 'cannot updates the requested post' do
+            post = Post.create! valid_attributes
+            patch post_url(post), params: { post: new_attributes }
+            post.reload
+            expect(post.title).to eq(valid_attributes[:title])
+          end
+
+          it 'redirects to the posts' do
+            post = Post.create! valid_attributes
+            patch post_url(post), params: { post: new_attributes }
+            post.reload
+            expect(response).to redirect_to(root_path)
+          end
         end
 
-        it 'redirects to the post' do
-          post = Post.create! valid_attributes
-          patch post_url(post), params: { post: new_attributes }
-          post.reload
-          expect(response).to redirect_to(post_url(post))
+        context 'with invalid parameters' do
+          it 'renders a response with found status' do
+            post = Post.create! valid_attributes
+            patch post_url(post), params: { post: invalid_attributes }
+            expect(response).to have_http_status(:found)
+          end
         end
       end
 
-      context 'with invalid parameters' do
-        it 'renders a response with 422 status' do
+      describe 'DELETE /destroy' do
+        it 'cannot destroys the requested post' do
           post = Post.create! valid_attributes
-          patch post_url(post), params: { post: invalid_attributes }
-          expect(response).to have_http_status(:unprocessable_entity)
+          expect do
+            delete post_url(post)
+          end.not_to change(Post, :count)
         end
-      end
-    end
 
-    describe 'DELETE /destroy' do
-      it 'destroys the requested post' do
-        post = Post.create! valid_attributes
-        expect do
+        it 'cannot redirects to the posts list' do
+          post = Post.create! valid_attributes
           delete post_url(post)
-        end.to change(Post, :count).by(-1)
-      end
-
-      it 'redirects to the posts list' do
-        post = Post.create! valid_attributes
-        delete post_url(post)
-        expect(response).to redirect_to(posts_url)
+          expect(response).to redirect_to(root_path)
+        end
       end
     end
   end
