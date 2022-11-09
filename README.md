@@ -16,6 +16,12 @@ This test simulates a "real sprint" that I will receive as an intern at Umanni.
 * Postgresql
 * Redis
 
+### How to test the project
+
+```ruby
+rspec
+```
+
 ### How to build the project
 
 ```ruby
@@ -38,3 +44,10 @@ rails db:setup
 * [x] Tailwind
 * [x] Cancancan
 * [ ] Action Cable
+
+### Seeds
+
+The seeds create a user with the following credentials to test the system:
+
+* email: 'user@user.com'
+* password: password
