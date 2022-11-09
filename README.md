@@ -1,24 +1,34 @@
-# README
+# Umanni-teste
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Umanni is a technology company formed by HR professionals. Therefore, we understand your daily life and the challenges of managing human capital. Our technology solutions are people-focused and easy to use. Executing HR strategy in an agile manner. However, for the best access this blog was created for the dissemination of techniques and news in the area of ​​HR, so all users can interact in comments of each publication.
 
-Things you may want to cover:
+## Getting Started
 
-* Ruby version
+### You will need this
 
-* System dependencies
+* Ruby 3.1.2
+* Postgresql
+* Redis
 
-* Configuration
+## How to build the project
 
-* Database creation
+```ruby
+bundle install
+rails db:setup
+```
 
-* Database initialization
+## How to run the project
 
-* How to run the test suite
+```ruby
+./bin/dev
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+## Tools used
 
-* Deployment instructions
-
-* ...
+* [x] Devise
+* [x] Action Text
+* [x] Rspec
+* [x] Faker
+* [x] Tailwind
+* [x] Cancancan
+* [ ] Action Cable
