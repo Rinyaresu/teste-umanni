@@ -11,6 +11,8 @@ This test simulates a "real sprint" that I will receive as an intern at Umanni.
 ### You will need this
 
 * Ruby 3.1.2
+* Nodejs 16.17.1
+* Yarn
 * Postgresql
 * Redis
 
