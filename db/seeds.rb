@@ -18,7 +18,7 @@ User.create_or_find_by!(email: 'user@user.com', password: 'password', password_c
 # Exclude all posts
 Post.all.each(&:destroy)
 
-# Create 5 user
+# Create 6 user
 6.times do
   User.create_or_find_by!(email: Faker::Internet.email, password: 'password', password_confirmation: 'password')
 end
