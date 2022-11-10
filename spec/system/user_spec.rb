@@ -65,7 +65,8 @@ RSpec.describe 'UsersSystem' do
       end
 
       it 'redirects to home' do
-        visit edit_user_registration_path
+        visit root_path
+        click_on 'My account'
         fill_in_edit_form
         fill_in 'user_current_password', with: 'password'
         click_button 'Update'
@@ -80,7 +81,8 @@ RSpec.describe 'UsersSystem' do
       end
 
       it 'redirects to home' do
-        visit edit_user_registration_path
+        visit root_path
+        click_on 'My account'
         click_button 'Cancel my account'
         expect(page).to have_content('Bye! Your account has been successfully cancelled. We hope to see you again soon.')
       end
